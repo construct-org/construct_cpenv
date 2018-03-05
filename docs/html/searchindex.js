@@ -1,0 +1,1 @@
+Search.setIndex({docnames:["guide","index"],envversion:52,filenames:["guide.rst","index.rst"],objects:{},objnames:{},objtypes:{},terms:{com:1,construct:1,cpenv:1,environ:1,git:1,github:1,guid:1,index:1,integr:1,modul:1,org:1,page:1,pip:1,search:1,ssh:1},titles:["Guide","construct_cpenv"],titleterms:{construct_cpenv:1,guid:0,instal:1}})
