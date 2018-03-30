@@ -46,6 +46,6 @@ setup(
     include_package_data=True,
     install_requires=['cpenv'],
     entry_points={
-        'construct.plugins': 'construct_cpenv = construct_cpenv'
+        'construct.extensions': 'construct_cpenv = construct_cpenv'
     }
 )
