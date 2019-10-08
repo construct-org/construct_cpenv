@@ -1,3 +1,5 @@
+**Deprecated** - Will be included with Construct 0.2
+
 ===============
 construct_cpenv
 ===============
