@@ -1,17 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, print_function
-__all__ = [
-    'activate_cpenv',
-    'activate_cpenv_modules',
-    'get_cpenv',
-    'launch_cpenv_shell',
-    'list_cpenv_modules',
-    'show_cpenv',
-    'validate_cpenv_modules',
-    'write_cpenv_modules',
-]
-
 import os
+import shlex
+import subprocess
+
+from construct.utils import platform
 from construct.tasks import (
     task,
     pass_context,
@@ -25,6 +18,39 @@ from construct.tasks import (
     artifact
 )
 from construct.errors import Fail
+
+
+__all__ = [
+    'activate_cpenv',
+    'activate_cpenv_modules',
+    'get_cpenv',
+    'launch_cpenv_shell',
+    'list_cpenv_modules',
+    'show_cpenv',
+    'validate_cpenv_modules',
+    'write_cpenv_modules',
+    'edit_cpenv_modules',
+]
+
+
+@task
+@params(kwarg('root'))
+def edit_cpenv_modules(root):
+    '''Edit the current entry.'''
+
+    editor = os.environ.get('EDITOR', 'subl --wait')
+    cpenv_file = os.path.join(root.path, '.cpenv').replace('\\', '/')
+    cmd = shlex.split(editor) + [cpenv_file]
+
+    kwargs = {
+        'stdout': subprocess.PIPE,
+        'stderr': subprocess.STDOUT,
+    }
+    if platform == 'win':
+        CREATE_NO_WINDOW = 0x08000000
+        kwargs['creationflags'] = CREATE_NO_WINDOW
+
+    subprocess.Popen(cmd, **kwargs)
 
 
 @task

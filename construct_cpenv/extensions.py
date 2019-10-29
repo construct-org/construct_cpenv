@@ -15,8 +15,15 @@ from construct_cpenv.tasks import (
     show_cpenv,
     validate_cpenv_modules,
     write_cpenv_modules,
+    edit_cpenv_modules,
 )
-from construct_cpenv.actions import CpenvSet, CpenvShow, CpenvList, CpenvShell
+from construct_cpenv.actions import (
+    CpenvSet,
+    CpenvShow,
+    CpenvList,
+    CpenvShell,
+    CpenvEdit,
+)
 
 
 class Cpenv(Extension):
@@ -52,6 +59,9 @@ class Cpenv(Extension):
         self.add_action(CpenvShell)
         self.add_task(CpenvShell, get_cpenv)
         self.add_task(CpenvShell, launch_cpenv_shell)
+
+        self.add_action(CpenvEdit)
+        self.add_task(CpenvEdit, edit_cpenv_modules)
 
         # Extend cpenv_launcher to activate cpenv modules before launch
         from construct_launcher.constants import BEFORE_LAUNCH

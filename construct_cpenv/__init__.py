@@ -3,7 +3,7 @@ from __future__ import absolute_import
 
 __title__ = 'construct_cpenv'
 __description__ = 'Construct Cpenv Integration'
-__version__ = '0.1.1'
+__version__ = '0.2.0'
 __author__ = 'Dan Bradham'
 __email__ = 'danielbradham@gmail.com'
 __license__ = 'MIT'

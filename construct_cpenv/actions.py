@@ -63,7 +63,7 @@ class CpenvShow(Action):
                 'label': 'Root',
                 'required': True,
                 'type': fsfs.Entry,
-                'help': 'Root directory to set cpenv modules for',
+                'help': 'Root directory to show cpenv modules for',
             }
         )
 
@@ -118,3 +118,34 @@ class CpenvShell(Action):
     @staticmethod
     def available(ctx):
         return ctx.host == 'cli' and ctx.project
+
+
+class CpenvEdit(Action):
+    '''Open existing .cpenv file or create a new one.'''
+
+    label = 'Edit .cpenv file'
+    identifier = 'cpenv.edit'
+
+    @staticmethod
+    def parameters(ctx):
+        params = dict(
+            root={
+                'label': 'Root',
+                'required': True,
+                'type': types.Entry,
+                'help': 'Root directory to set cpenv modules for',
+            }
+        )
+
+        if not ctx:
+            return params
+
+        entry = ctx.get_deepest_entry()
+        params['root']['default'] = entry or fsfs.get_entry(os.getcwd())
+
+        return params
+
+    @staticmethod
+    def available(ctx):
+        return ctx.host == 'cli' and ctx.project
+
