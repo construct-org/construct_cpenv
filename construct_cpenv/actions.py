@@ -9,7 +9,6 @@ __all__ = [
 ]
 
 import os
-import subprocess
 import fsfs
 from construct import Action, types
 
@@ -148,4 +147,3 @@ class CpenvEdit(Action):
     @staticmethod
     def available(ctx):
         return ctx.host == 'cli' and ctx.project
-

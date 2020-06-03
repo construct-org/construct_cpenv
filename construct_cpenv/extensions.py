@@ -69,13 +69,13 @@ class Cpenv(Extension):
             'launch.*',
             get_cpenv,
             arg_getters=[
-                lambda ctx: ctx.get_deepest_entry() or
-                fsfs.get_entry(os.getcwd())
+                lambda ctx: ctx.get_deepest_entry()
+                or fsfs.get_entry(os.getcwd())
             ],
-            priority=BEFORE_LAUNCH
+            priority=BEFORE_LAUNCH,
         )
         self.add_task(
             'launch.*',
             activate_cpenv_modules,
-            priority=BEFORE_LAUNCH
+            priority=BEFORE_LAUNCH,
         )
